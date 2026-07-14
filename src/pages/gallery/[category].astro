@@ -1,0 +1,34 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import { byDateDesc } from '../../lib/shoots';
+
+export async function getStaticPaths() {
+  const categories = await getCollection('categories');
+  return categories.map((category) => ({
+    params: { category: category.id },
+    props: { category },
+  }));
+}
+
+const { category } = Astro.props;
+const shoots = (
+  await getCollection('shoots', (s) => s.data.category.id === category.id)
+).sort(byDateDesc);
+---
+
+<Base title={category.data.displayName}>
+  <h1>{category.data.displayName}</h1>
+  <p>{category.data.blurb}</p>
+  {
+    shoots.map((shoot) => (
+      <article>
+        <h2>{shoot.data.title}</h2>
+        {shoot.data.images.map((img) => (
+          <Image src={img.src} alt={img.alt} widths={[480, 960, 1600]} sizes="100vw" loading="lazy" />
+        ))}
+      </article>
+    ))
+  }
+</Base>

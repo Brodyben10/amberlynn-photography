@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import { getEntry } from 'astro:content';
+
+const settings = await getEntry('site', 'settings');
+const s = settings!.data;
+---
+
+<Base title="" description={s.tagline}>
+  <h1>{s.wordmark}</h1>
+  <p>{s.tagline}</p>
+</Base>

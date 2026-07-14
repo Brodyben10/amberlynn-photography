@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const categories = (await getCollection('categories')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+
+<Base title="Gallery">
+  <h1>Gallery</h1>
+  {
+    categories.map((c) => (
+      <section>
+        <h2>{c.data.displayName}</h2>
+        <p>{c.data.blurb}</p>
+        <a href={`/gallery/${c.id}`}>View all {c.data.displayName} →</a>
+      </section>
+    ))
+  }
+</Base>

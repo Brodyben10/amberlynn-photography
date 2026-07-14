@@ -1,0 +1,47 @@
+---
+import '@fontsource/young-serif';
+import '@fontsource-variable/karla';
+import '@fontsource-variable/karla/wght-italic.css';
+import '../styles/global.css';
+import { getEntry } from 'astro:content';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const settings = await getEntry('site', 'settings');
+if (!settings) throw new Error('Missing src/content/site/settings.md');
+const s = settings.data;
+const pageTitle = title ? `${title} — ${s.wordmark}` : s.wordmark;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description ?? `${s.wordmark} — ${s.tagline}`} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header>
+      <nav aria-label="Main">
+        <a href="/">{s.wordmark}</a>
+        <a href="/gallery">Gallery</a>
+        <a href="/contact">Contact</a>
+      </nav>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer>
+      <p>{s.photographerName} · {s.location}</p>
+      <p><a href={`mailto:${s.email}`}>{s.email}</a> · <a href={`https://instagram.com/${s.instagram.replace(/^@/, '')}`}>{s.instagram}</a></p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import { getEntry } from 'astro:content';
+
+const settings = await getEntry('site', 'settings');
+const s = settings!.data;
+---
+
+<Base title="Contact">
+  <h1>Contact</h1>
+  <p>{s.pricingLine}</p>
+  <form action={`https://formspree.io/f/${s.formspreeId}`} method="POST">
+    <label>Name <input type="text" name="name" required /></label>
+    <button type="submit">Send</button>
+  </form>
+</Base>
