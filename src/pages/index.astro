@@ -199,14 +199,15 @@ if (picked.length < 4) {
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--gold-deep);
     text-decoration: none;
-    border-bottom: 1px solid color-mix(in srgb, var(--gold) 55%, transparent);
+    border-bottom: 1px solid transparent;
     padding-bottom: 0.2em;
     transition: border-color 150ms ease;
   }
 
-  .cta-link:hover {
+  .cta-link:hover,
+  .cta-link:focus-visible {
     border-bottom-color: var(--gold);
   }
 </style>

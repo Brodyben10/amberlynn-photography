@@ -113,12 +113,13 @@ const treeItems = categories.map((c) => ({ id: c.id, label: c.data.displayName }
     text-transform: uppercase;
     color: var(--gold);
     text-decoration: none;
-    border-bottom: 1px solid color-mix(in srgb, var(--gold) 55%, transparent);
+    border-bottom: 1px solid transparent;
     padding-bottom: 0.2em;
     transition: border-color 150ms ease;
   }
 
-  .view-all a:hover {
+  .view-all a:hover,
+  .view-all a:focus-visible {
     border-bottom-color: var(--gold);
   }
 

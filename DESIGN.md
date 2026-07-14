@@ -16,6 +16,7 @@ High-desert western Colorado at the last hour of sun. The photographs supply all
 | `--umber` | `#6B6259` | Secondary text: dates, captions, blurbs, inactive index entries. |
 | `--gold` | `#8F6B2C` | THE accent. Links, active index entry, ticks, focus rings. Nothing else is colored. |
 | `--gold-soft` | `#C9A96A` | Accent over dark imagery (hero scrim text details), hover tints. |
+| `--gold-deep` | `#82601F` | Gold for small text sitting on `--shade` (keeps contrast ≥4.5:1). |
 
 No other colors. No gradients except the hero scrim (transparent → `rgba(20,16,12,…)`).
 
