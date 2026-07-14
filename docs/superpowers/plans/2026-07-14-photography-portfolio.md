@@ -176,3 +176,19 @@ Owns `scripts/ingest.mjs`, CLAUDE.md, README.md, root config. Ingest per PRD §6
 - [ ] Execute CLAUDE.md "add a shoot" literally with 2 spare images; verify; revert
 - [ ] Malformed-frontmatter build-failure check (bad ref, unknown key, bad enum)
 - [ ] Final commit summarizing design decisions + PRD deviations
+
+---
+
+## Final summary — deviations from PRD (v1 shipped)
+
+1. `src/content.config.ts` instead of `src/content/config.ts` — Astro 5+ content-layer convention (installed major: Astro 7; PRD required 5+).
+2. Shoot `images` are `{ src, alt }` pairs, not bare `image()[]` — guarantees per-image alt text, which the PRD's a11y floor requires.
+3. 9 shoots instead of 8 — no single Unsplash prom/senior session had 6+ cohesive frames; three internally-pure senior sessions beat one mixed-subject one.
+4. 58 committed images (~19MB) vs ~44 (10–15MB) — supports the extra shoot; per-file sizes within the 2400px/q80 envelope.
+5. Added `AGENTS.md` pointer — owner will operate the site with Codex, which auto-reads AGENTS.md, not CLAUDE.md (user request).
+6. Added 7th color token `--gold-deep` — `--gold` misses 4.5:1 on `--shade`; deep variant keeps small gold text WCAG-compliant (landing now 100/100 Lighthouse).
+7. Schema eagerly validates category existence — Astro resolves `reference()` lazily, so a dangling ref built silently; PRD acceptance requires a readable build failure.
+8. `vite.server.allowedHosts` for `.trycloudflare.com` — dev-only, lets the owner preview through a Cloudflare quick tunnel (user request).
+9. Chanel-rule removal: persistent gold underlines on caps links (view-all / CTA) now appear only on hover/focus — gold stays scarce (active glyph + text links).
+
+Verified: fresh-clone offline build ✓ · malformed frontmatter (unknown key / bad ref / bad enum) fails readable ✓ · scroll-spy desktop + mobile chips ✓ (fixed DOM-timing bug) · reduced-motion disables settle/reveal/smooth-scroll ✓ · one eager image (hero) ✓ · CLAUDE.md Operation 1 executed literally and reverted ✓ · Lighthouse gallery 95/100, landing 100/100 ✓ · 360–1440px breakpoints eyeballed via headless Chrome ✓
