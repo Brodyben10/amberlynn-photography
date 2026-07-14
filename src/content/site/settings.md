@@ -1,6 +1,6 @@
 ---
-photographerName: Amber Lynn
-wordmark: Amber Lynn
+photographerName: Amberlynn
+wordmark: Amberlynn
 tagline: I photograph people who'd rather forget the camera is there.
 location: Grand Junction, Colorado
 email: hello@amberlynnphoto.com
