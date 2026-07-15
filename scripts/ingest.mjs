@@ -12,8 +12,9 @@
  *      WebP (quality 80), and STRIPS all metadata (EXIF/GPS) — client photos
  *      are often taken at their homes, so location data must never ship.
  *   3. Writes 01.webp, 02.webp, ... into src/content/shoots/<shoot-slug>/.
- *   4. Writes a stub index.mdx that builds immediately but is marked with
- *      "EDIT ME" placeholders for title/date/alt text/story.
+ *   4. Writes a stub index.mdx that builds immediately, with sensible
+ *      auto-filled title/date, and an "EDIT ME" placeholder alt for each
+ *      photo — the only thing that must be edited before publishing.
  */
 
 import { existsSync } from 'node:fs';
@@ -119,6 +120,10 @@ async function main() {
   const pad = Math.max(2, String(imageFiles.length).length);
   const outputNames = [];
 
+  // Local date, not toISOString() (UTC), so evening ingests don't stamp tomorrow.
+  const now = new Date();
+  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+
   try {
     for (let i = 0; i < imageFiles.length; i++) {
       const inputPath = path.join(sourceDir, imageFiles[i]);
@@ -147,9 +152,6 @@ async function main() {
     }
 
     // --- Write stub index.mdx ---
-    // Local date, not toISOString() (UTC), so evening ingests don't stamp tomorrow.
-    const now = new Date();
-    const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
     const imagesYaml = outputNames
       .map((name) => `  - src: ./${name}\n    alt: "EDIT ME: describe this photo"`)
       .join('\n');
@@ -164,8 +166,6 @@ ${imagesYaml}
 layout_hint: masonry
 featured: false
 ---
-
-EDIT ME: one to three sentences about this session.
 `;
 
     await writeFile(path.join(shootDir, 'index.mdx'), stub, 'utf8');
@@ -181,14 +181,14 @@ Done. ${outputNames.length} image(s) processed (max ${LONGEST_EDGE}px, WebP, met
 
 New shoot stub: src/content/shoots/${slug}/index.mdx
 
-Next, edit that file:
-  1. title      — currently "${titleCase(slug)}"; change if you want something different
-  2. date       — currently today; set it to the shoot date
-  3. alt        — replace every "EDIT ME" with a real one-line description of that photo
-  4. story      — replace the body line below the --- with 1-3 sentences about the session
-  5. featured   — set to true if this shoot's images should appear in the gallery/landing highlights
-  6. cover      — currently ./${outputNames[0]}; point it at the strongest image
-  7. layout_hint — masonry (default), editorial, or full
+This shoot is ready to publish as soon as you fix the alt text below.
+Everything else is optional — edit it only if you want to:
+  1. alt         — replace every "EDIT ME" with a real one-line description of that photo (required)
+  2. featured    — set to true if this shoot's images should appear in the gallery/landing highlights
+  3. cover       — currently ./${outputNames[0]}; point it at the strongest image
+  4. layout_hint — masonry (default), editorial, or full
+  5. title, date — currently "${titleCase(slug)}" / ${today}; only shown if this shoot ends up
+                   featured on the homepage, so change them only if you want something specific
 
 Then check it locally with: npm run dev
 `);
