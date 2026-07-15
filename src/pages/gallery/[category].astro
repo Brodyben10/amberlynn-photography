@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import ImageGrid from '../../components/ImageGrid.astro';
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 import { byDateDesc } from '../../lib/shoots';
 
 export async function getStaticPaths() {
@@ -17,16 +17,6 @@ const { category } = Astro.props;
 const shoots = (
   await getCollection('shoots', (s) => s.data.category.id === category.id)
 ).sort(byDateDesc);
-
-const rendered = await Promise.all(
-  shoots.map(async (shoot) => ({ shoot, Content: (await render(shoot)).Content }))
-);
-
-const monthYear = new Intl.DateTimeFormat('en-US', {
-  month: 'long',
-  year: 'numeric',
-  timeZone: 'UTC',
-});
 ---
 
 <Base title={category.data.displayName} description={category.data.blurb}>
@@ -40,17 +30,10 @@ const monthYear = new Intl.DateTimeFormat('en-US', {
     </header>
 
     {
-      rendered.map(({ shoot, Content }) => (
-        <article class="shoot">
-          <header class="shoot-head">
-            <p class="eyebrow">{monthYear.format(shoot.data.date)}</p>
-            <h2>{shoot.data.title}</h2>
-          </header>
-          <div class="story">
-            <Content />
-          </div>
+      shoots.map((shoot) => (
+        <div class="shoot">
           <ImageGrid images={shoot.data.images} variant={shoot.data.layout_hint} />
-        </article>
+        </div>
       ))
     }
   </div>
@@ -93,19 +76,5 @@ const monthYear = new Intl.DateTimeFormat('en-US', {
 
   .shoot {
     margin-top: var(--space-section);
-  }
-
-  .shoot-head h2 {
-    margin-top: 0.4rem;
-    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  }
-
-  .story {
-    margin: 1.5rem 0 clamp(2rem, 4vw, 3rem);
-    max-width: var(--measure);
-  }
-
-  .story :global(p + p) {
-    margin-top: 1em;
   }
 </style>
