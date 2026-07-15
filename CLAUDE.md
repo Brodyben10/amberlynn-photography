@@ -6,7 +6,7 @@ This is Amberlynn's photography portfolio: an Astro static site deployed on Clou
 
 **Never edit anything under `src/components/`, `src/pages/`, `src/layouts/`, `src/styles/`, `src/lib/`, or root config files** (`astro.config.mjs`, `package.json`, `tsconfig.json`, `src/content.config.ts`). No exceptions, even if a change "would be easy." Content lives ONLY under `src/content/` (plus favicon assets in `public/`). If a request truly requires code changes, say so and stop — don't attempt it.
 
-## Operation 1: Add a shoot
+## Operation 1: Add photos
 
 Run the ingest script (it resizes to 2400px, converts to WebP, and strips EXIF/GPS metadata — important because client photos are taken at their homes):
 
@@ -14,32 +14,30 @@ Run the ingest script (it resizes to 2400px, converts to WebP, and strips EXIF/G
 npm run ingest ~/Desktop/rivera-photos weddings rivera-wedding
 ```
 
-Arguments: source folder, existing category id, new shoot slug. It creates `src/content/shoots/rivera-wedding/` with `01.webp, 02.webp, ...` and a stub `index.mdx` full of `EDIT ME` placeholders. Then edit that `index.mdx` — ask the owner for the shoot date, a sentence or two about the session, and what's in each photo. A finished file looks like:
+Arguments: source folder, existing category id, new shoot slug (any short, url-friendly name for this batch of photos — it's never shown to visitors). It creates `src/content/shoots/rivera-wedding/` with `01.webp, 02.webp, ...` and a stub `index.mdx`. The stub is ready to publish as soon as you fix the alt text — everything else is optional:
 
 ```mdx
 ---
 title: Rivera Wedding
 category: weddings
 date: 2026-06-20
-cover: ./03.webp
+cover: ./01.webp
 images:
   - src: ./01.webp
-    alt: The bride laughing during her father's toast, string lights behind her.
+    alt: EDIT ME: describe this photo
   - src: ./02.webp
-    alt: Rings resting on a handwritten vow book.
-  - src: ./03.webp
-    alt: The couple's first dance under a canvas tent at dusk.
+    alt: EDIT ME: describe this photo
 layout_hint: masonry
-featured: true
+featured: false
 ---
-
-A June evening at the Rivera family orchard. Half the guests cried during
-the vows, and the other half caught up during the dancing.
 ```
 
-- `alt` — a real one-line description per photo. Never leave `EDIT ME` in a published shoot.
-- `layout_hint` — `masonry` (default, mixed grid — right for most shoots), `editorial` (larger, magazine-style pacing — for small curated sets), `full` (each image full width — only when every image deserves the whole screen).
+- `alt` — the one thing you must edit. Replace every `EDIT ME` with a real one-line description of that photo. Never leave `EDIT ME` in a published shoot.
+- `title` / `date` — optional, and never shown on the site itself. `title` only ever surfaces as a caption if this shoot is featured on the homepage (see Operation 4) — leave the auto-filled values alone unless you want something more specific.
 - `featured: true` puts this shoot's images into the gallery highlights and landing page (see Operation 4).
+- `layout_hint` — `masonry` (default, mixed grid — right for most shoots), `editorial` (larger, magazine-style pacing — for small curated sets), `full` (each image full width — only when every image deserves the whole screen).
+
+There's no story or event write-up to fill in — just point the script at a folder of photos and fix the alt text.
 
 ## Operation 2: Add / reorder / edit a category
 
