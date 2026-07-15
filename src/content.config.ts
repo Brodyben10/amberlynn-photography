@@ -61,9 +61,9 @@ const shoots = defineCollection({
   schema: ({ image }) =>
     z
       .object({
-        title: z.string(),
+        title: z.string().optional(),
         category: existingCategory(),
-        date: z.coerce.date(),
+        date: z.coerce.date().optional(),
         cover: image(),
         images: z
           .array(
