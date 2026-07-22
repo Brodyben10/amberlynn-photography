@@ -6,7 +6,7 @@ interface Props {
 
 const { formspreeId, email } = Astro.props;
 
-const eventTypes = ['Wedding', 'Engagement', 'Family', 'Seniors & Prom', 'Something else'];
+const eventTypes = ['Engagement', 'Family', 'Seniors & Prom', 'Something else'];
 ---
 
 <form class="contact-form" action={`https://formspree.io/f/${formspreeId}`} method="POST">

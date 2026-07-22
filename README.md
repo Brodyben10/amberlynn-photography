@@ -4,7 +4,7 @@ A photography portfolio built with [Astro](https://astro.build), deployed as a s
 
 ## Making content changes
 
-You don't need to touch code. Open this folder in **Claude Code** and say what you want in plain English — "add the photos in ~/Desktop/rivera-photos as a new wedding shoot," "change the tagline," "feature the Ortiz session." The instructions Claude follows are in `CLAUDE.md`.
+You don't need to touch code. Open this folder in **Claude Code** and say what you want in plain English — "add the photos in ~/Desktop/rivera-photos as a new engagement shoot," "change the tagline," "feature the Ortiz session." The instructions Claude follows are in `CLAUDE.md`.
 
 ## Local development
 

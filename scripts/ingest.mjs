@@ -42,11 +42,11 @@ Usage: npm run ingest <source-folder> <category> <shoot-slug>
 
   <source-folder>  Folder containing the photos to import (jpg/jpeg/png/webp/tiff/heic)
   <category>       An existing category id — a filename (without .md) in src/content/categories/
-  <shoot-slug>     URL-friendly name for the new shoot, e.g. rivera-wedding
+  <shoot-slug>     URL-friendly name for the new shoot, e.g. rivera-engagement
                    (lowercase letters, numbers, and hyphens)
 
 Example:
-  npm run ingest ~/Desktop/rivera-photos weddings rivera-wedding
+  npm run ingest ~/Desktop/rivera-photos engagements rivera-engagement
 `);
   process.exit(1);
 }
@@ -66,7 +66,7 @@ async function main() {
   // --- Validate slug ---
   if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug)) {
     fail(
-      `"${slug}" is not a valid slug. Use only lowercase letters, numbers, and hyphens (e.g. rivera-wedding).`
+      `"${slug}" is not a valid slug. Use only lowercase letters, numbers, and hyphens (e.g. rivera-engagement).`
     );
   }
 
