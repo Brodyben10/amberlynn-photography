@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------ */
 /* Design tokens — "Late Light" (see DESIGN.md). These six colors and  */
-/* three families are the entire visual vocabulary of the site.        */
+/* four families are the entire visual vocabulary of the site.         */
 /* ------------------------------------------------------------------ */
 :root {
   --paper: #fcfbf8;
@@ -13,6 +13,7 @@
 
   --font-display: 'Allura', cursive, Georgia, serif;
   --font-homepage-display: 'Young Serif', Georgia, serif;
+  --font-accent: 'Caveat Variable', cursive, sans-serif;
   --font-body: 'Karla Variable', 'Karla', system-ui, sans-serif;
 
   --measure: 62ch;
