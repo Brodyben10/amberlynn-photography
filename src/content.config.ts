@@ -42,6 +42,12 @@ const site = defineCollection({
         pricingLine: z.string(),
         heroImage: image(),
         heroAlt: z.string(),
+        introHeading: z.string(),
+        introText: z.string(),
+        ctaLine: z.string(),
+        ctaLinkText: z.string(),
+        contactHeading: z.string(),
+        contactIntro: z.string(),
       })
       .strict(),
 });

@@ -11,15 +11,15 @@ This is Amberlynn's photography portfolio: an Astro static site deployed on Clou
 Run the ingest script (it resizes to 2400px, converts to WebP, and strips EXIF/GPS metadata — important because client photos are taken at their homes):
 
 ```
-npm run ingest ~/Desktop/rivera-photos weddings rivera-wedding
+npm run ingest ~/Desktop/rivera-photos engagements rivera-engagement
 ```
 
-Arguments: source folder, existing category id, new shoot slug (any short, url-friendly name for this batch of photos — it's never shown to visitors). It creates `src/content/shoots/rivera-wedding/` with `01.webp, 02.webp, ...` and a stub `index.mdx`. The stub is ready to publish as soon as you fix the alt text — everything else is optional:
+Arguments: source folder, existing category id, new shoot slug (any short, url-friendly name for this batch of photos — it's never shown to visitors). It creates `src/content/shoots/rivera-engagement/` with `01.webp, 02.webp, ...` and a stub `index.mdx`. The stub is ready to publish as soon as you fix the alt text — everything else is optional:
 
 ```mdx
 ---
-title: Rivera Wedding
-category: weddings
+title: Rivera Engagement
+category: engagements
 date: 2026-06-20
 cover: ./01.webp
 images:
@@ -68,12 +68,19 @@ photographerName: Amberlynn           # her name, used in titles/footer
 wordmark: Amberlynn                   # the nav wordmark text
 tagline: I photograph people who'd rather forget the camera is there.   # hero line
 location: Grand Junction, Colorado    # shown in footer/contact
-email: hello@amberlynnphoto.com       # contact fallback link
-instagram: "@amberlynn.photo"         # keep quotes — the @ needs them
+email: Amberlynnlafae@gmail.com       # contact fallback link
+instagram: "@amberlynn_lafae_photography"         # keep quotes — the @ needs them
+tiktok: "@Amberlynn_lafae_photog_"    # keep quotes — the @ needs them
 formspreeId: YOUR_FORM_ID             # see below
 pricingLine: Sessions from $150 — inquire for details.   # italic line on contact page
 heroImage: ./hero.webp                # landing hero — file must sit in src/content/site/
 heroAlt: A couple stands close together in warm evening light, photographed candidly from a distance.
+introHeading: My photographs feel the way the day actually felt.   # landing page, below the hero
+introText: A paragraph or two of intro copy, same spot.
+ctaLine: Planning something — an engagement, a season, an ordinary Tuesday worth keeping?   # landing page CTA band
+ctaLinkText: Tell me about your day →     # the CTA band's link text
+contactHeading: Tell me about your day.   # contact page heading
+contactIntro: A paragraph of intro copy on the contact page, above the email/Instagram/TikTok links.
 ---
 ```
 
@@ -88,7 +95,7 @@ Flip `featured: true` or `featured: false` in a shoot's `src/content/shoots/<slu
 ## Publishing
 
 ```
-git add -A && git commit -m "add rivera wedding shoot" && git push origin main
+git add -A && git commit -m "add rivera engagement shoot" && git push origin main
 ```
 
 Pushing to `main` triggers a Cloudflare Pages build automatically (~1–2 min). **If the build fails, the live site is untouched** — nothing breaks in public. Read the build log in the Cloudflare Pages dashboard (or run `npm run build` locally): the error names the exact file and the bad frontmatter key. Fix the file, commit, push again.
