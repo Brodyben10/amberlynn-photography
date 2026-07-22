@@ -1,7 +1,7 @@
 ---
-displayName: Couples
-subtitle: Engagements, Couples, Anniversaries
-order: 4
-blurb: The just-said-yes sessions — new rings, nervous laughter, and whatever light the evening decides to give us.
+displayName: Seniors
+subtitle: Seniors, Prom, Homecoming
+order: 3
+blurb: Senior year goes fast. Bring the truck, the dress, or the dog — we'll make an evening of it.
 featuredCount: 8
 ---
