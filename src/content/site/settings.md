@@ -1,7 +1,10 @@
 ---
 photographerName: Amberlynn
 wordmark: Amberlynn
-tagline: Hi, I'm Amberlynn. I'm a Grand Junction based photographer who loves documenting genuine moments.
+tagline: |-
+  Hi, I'm Amberlynn.
+  
+  I'm a Grand Junction based photographer who loves documenting genuine moments.
 location: Grand Junction, Colorado
 email: Amberlynnlafae@gmail.com
 instagram: "@amberlynn_lafae_photography"
