@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------ */
 /* Design tokens — "Late Light" (see DESIGN.md). These six colors and  */
-/* two families are the entire visual vocabulary of the site.          */
+/* three families are the entire visual vocabulary of the site.        */
 /* ------------------------------------------------------------------ */
 :root {
   --paper: #fcfbf8;
