@@ -35,12 +35,8 @@ if (picked.length < 4) {
   <Hero image={s.heroImage} alt={s.heroAlt} tagline={s.tagline} />
 
   <section class="intro">
-    <h1>I make photographs that feel the way the day actually felt.</h1>
-    <p>
-      I'm based in {s.location}, and most of my favorite frames happen in the last hour of sun —
-      unposed, unhurried, a little windblown. If you'd rather spend a session laughing with your
-      people than looking at a lens, we'll get along.
-    </p>
+    <h1>{s.introHeading}</h1>
+    <p>{s.introText}</p>
   </section>
 
   {
@@ -73,10 +69,8 @@ if (picked.length < 4) {
   }
 
   <section class="cta">
-    <p class="cta-line">
-      Planning something — a wedding, a season, an ordinary Tuesday worth keeping?
-    </p>
-    <a class="cta-link" href="/contact">Tell me about your day →</a>
+    <p class="cta-line">{s.ctaLine}</p>
+    <a class="cta-link" href="/contact">{s.ctaLinkText}</a>
   </section>
 </Base>
 

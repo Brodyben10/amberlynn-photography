@@ -13,11 +13,8 @@ const instagramHandle = s.instagram.replace(/^@/, '');
   <div class="contact-page">
     <div class="cols">
       <div class="left">
-        <h1>Tell me about your day.</h1>
-        <p>
-          A date, a place, the people who'll be there — that's plenty to start. I'll write back
-          within a couple of days, usually sooner, and we'll figure out the rest together.
-        </p>
+        <h1>{s.contactHeading}</h1>
+        <p>{s.contactIntro}</p>
         <ul class="reach">
           <li><a href={`mailto:${s.email}`}>{s.email}</a></li>
           <li><a href={`https://instagram.com/${instagramHandle}`}>Instagram</a></li>
